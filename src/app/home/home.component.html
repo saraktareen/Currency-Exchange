@@ -1,0 +1,14 @@
+<div class = "tab-container">
+    <div class="tab-headings">
+        <button (click)="onTabClick('Convert')" [class.active]="activeTab === 'Convert'" class="tablinks">Convert</button>
+        <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
+    </div>
+
+    <div *ngIf="activeTab === 'Convert'" id="Convert" class="tabcontent">
+    <p>Convert</p>
+    </div>
+
+    <div *ngIf="activeTab === 'Graph'"  id="Graph" class="tabcontent">
+    <p>Graph</p> 
+    </div>
+</div>
