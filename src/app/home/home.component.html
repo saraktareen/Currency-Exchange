@@ -1,14 +1,37 @@
-<div class = "tab-container">
+<div class="tab-container">
     <div class="tab-headings">
-        <button (click)="onTabClick('Convert')" [class.active]="activeTab === 'Convert'" class="tablinks">Convert</button>
-        <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
+      <button (click)="onTabClick('Convert')" [class.active]="activeTab === 'Convert'" class="tablinks">Convert</button>
+      <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
     </div>
-
+  
     <div *ngIf="activeTab === 'Convert'" id="Convert" class="tabcontent">
-    <p>Convert</p>
-    </div>
+      <div class="input-container">
+        <label for="amount">Amount</label>
+        <br>
+        <input type="text" id="amount" name="amount" [(ngModel)]="amountValue">
+      </div>
+  
+      <div class="input-container">
+        <label for="from">From</label>
+        <br>
+        <input type="text" id="from" name="from" [(ngModel)]="fromCurrency">
+      </div>
+  
+      <a class="input-container" (click)="swapCurrencies()">
+        <img src="/assets/swap-icon.png" alt="Swap Icon">
+      </a>
 
-    <div *ngIf="activeTab === 'Graph'"  id="Graph" class="tabcontent">
-    <p>Graph</p> 
+      <div class="input-container">
+        <label for="to">To</label>
+        <br>
+        <input type="text" id="to" name="to" [(ngModel)]="toCurrency">
+      </div>
+      <br><br>
+      <button (click)="makeApiRequest()" class="convert-button">Convert</button>
     </div>
-</div>
+  
+    <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
+      <p>Graph</p> 
+    </div>
+  </div>
+  

@@ -47,3 +47,55 @@
   .tabcontent {
     padding: 5px 5px;
   }
+
+  .input-container {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 43px 20px;
+
+  }
+
+  .input-container label{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .input-container input{
+    width: 200px;
+    height: 40px;
+    border: 1px solid rgb(215, 209, 209);
+    border-radius: 5px;
+    box-shadow: #ccc;
+    margin-top: 10px;
+  }
+  
+  .input-container input:hover{
+    border: 1px solid rgb(61, 61, 230);
+  }
+
+
+  .input-container img{
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 100%;
+  }
+
+  .convert-button {
+    display: inline-block;
+    background-color: rgb(27, 27, 155);
+    color: white;
+    font-size: 15px;
+    width: 150px;
+    height: 40px;
+    border: 1px solid rgb(215, 209, 209);
+    border-radius: 5px;
+    box-shadow: #ccc;
+    margin-top: 10px;
+  }
+
+  .convert-button:hover{
+    background-color: rgb(40, 40, 201);
+    transition: 0.3s;
+  }
+  
