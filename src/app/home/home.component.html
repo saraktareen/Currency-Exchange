@@ -8,15 +8,25 @@
       <div class="input-container">
         <label for="amount">Amount</label>
         <br>
-        <input type="text" id="amount" name="amount" [(ngModel)]="amountValue">
+        <!-- <input type="text" id="amount" name="amount" [(ngModel)]="amountValue" required pattern="/^[0-9]*$/"> -->
+        <input type="text" id="amount" name="amount" [(ngModel)]="amountValue" (input)="onAmountInputChange($event)">
+
       </div>
   
+      <!-- <input type="email" [(ngModel)]="enteredEmailAddress" name="email" placeholder="Enter your email address" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"> -->
+      <!-- <div *ngIf="registrationForm.controls['amount'].invalid && (registrationForm.controls['amount'].touched)" class="error-message">
+        Amount value is required
+        <ng-container *ngIf="registrationForm.controls['amount'].errors?.['pattern']">Invalid amount</ng-container>
+      </div> -->
+
       <div class="input-container">
         <label for="from">From</label>
         <br>
-        <input type="text" id="from" name="from" [(ngModel)]="fromCurrency">
+        <span class="flag-icon flag-icon-{{fromCurrency.toLowerCase()}}"></span>
+        <input type="text" id="from" name="from" [(ngModel)]="fromCurrency" (input)="onCurrencyInputChange($event, 'from')">
       </div>
-  
+      
+
       <a class="input-container" (click)="swapCurrencies()">
         <img src="/assets/swap-icon.png" alt="Swap Icon">
       </a>
@@ -24,10 +34,18 @@
       <div class="input-container">
         <label for="to">To</label>
         <br>
-        <input type="text" id="to" name="to" [(ngModel)]="toCurrency">
+        <span class="flag-icon flag-icon-{{fromCurrency.toLowerCase()}}"></span>
+        <input type="text" id="to" name="to" [(ngModel)]="toCurrency" (input)="onCurrencyInputChange($event, 'to')">
       </div>
       <br><br>
+
+      
       <button (click)="makeApiRequest()" class="convert-button">Convert</button>
+
+      <div>{{ displayAmount }}</div> <!-- Displays the converted amount -->
+      <div>{{ displayRate }}</div> <!-- Displays the conversion rate -->
+
+
     </div>
   
     <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">

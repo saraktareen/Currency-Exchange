@@ -82,7 +82,6 @@
   }
 
   .convert-button {
-    display: inline-block;
     background-color: rgb(27, 27, 155);
     color: white;
     font-size: 15px;
@@ -91,7 +90,9 @@
     border: 1px solid rgb(215, 209, 209);
     border-radius: 5px;
     box-shadow: #ccc;
-    margin-top: 10px;
+    float: right;
+    margin-right: 22%;
+    margin-top: 0px;
   }
 
   .convert-button:hover{
