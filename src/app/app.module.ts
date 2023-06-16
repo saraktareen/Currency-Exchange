@@ -2,30 +2,27 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 
-const appRoute: Routes = [
-  { path: '', redirectTo: '/Home', pathMatch: 'full' }, // Default route redirects to 'Home'
-  { path: 'Home', component: HomeComponent },
-];
-
+import { TransactionHistoryService } from './services/transaction-history.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
+    TransactionHistoryComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoute)
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [TransactionHistoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TransactionHistoryService } from '../services/transaction-history.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 
 export class HomeComponent {
+
+  constructor(private transactionHistoryService: TransactionHistoryService) {}
+
+  transactionHistory: any[] = [];
+
+
   activeTab: string = 'Convert';
   amountValue: number | undefined;
   fromCurrency: string = '';
@@ -14,7 +21,13 @@ export class HomeComponent {
   displayConvertedAmount: string = '';
   displayRate = '';
   result = '';
-  duplicateCurrencyMessage = '';
+  id: number = 0;
+  // duplicateCurrencyMessage = '';
+
+  startDate: string = '';
+  endDate: string = '';
+
+
 
   onTabClick(tab: string) {
     this.activeTab = tab;
@@ -27,6 +40,7 @@ export class HomeComponent {
   }
 
   // function is made asynchronous
+  // Converts the currency
   async makeApiRequest() {
     const requestURL = `https://api.exchangerate.host/convert?from=${this.fromCurrency}&to=${this.toCurrency}`;
 
@@ -48,25 +62,26 @@ export class HomeComponent {
       // }
 
       
-        // Retrieve existing transaction history from local storage
+        // Retrieve existing transaction history from local storage if not a new array called transactionHistory is created
         const existingHistoryJSON = localStorage.getItem('transactionHistory');
         let transactionHistory: any[] = [];
 
-        // Parse the JSON string to a JavaScript array
+        //JSON.parse converts the string from JSON to JS
         if (existingHistoryJSON) {
           transactionHistory = JSON.parse(existingHistoryJSON);
         }
 
         // Append the new conversion details to the transaction history
         const newTransaction = {
+          id: this.id,
           amount: this.amountValue,
           from: this.fromCurrency,
           to: this.toCurrency,
           rate: exchangeRate,
           convertedAmount: convertedAmount,
         };
-        transactionHistory.push(newTransaction);
-
+        transactionHistory.push(newTransaction); 
+        this.id++;
         // Convert the array back to a JSON string
         const updatedHistoryJSON = JSON.stringify(transactionHistory);
 
@@ -105,5 +120,10 @@ export class HomeComponent {
 
     // Update the amountValue property in your component
     this.amountValue = numericValue === '' ? undefined : parseInt(numericValue); // Prevents the NaN from being displayed when the user types in a number
+  }
+
+  makeGraphApiRequest() {
+    const existingHistoryJSON = localStorage.getItem('transactionHistory');
+    this.transactionHistory = existingHistoryJSON ? JSON.parse(existingHistoryJSON) : [];
   }
 }

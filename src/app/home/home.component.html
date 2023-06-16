@@ -48,13 +48,37 @@
         </div>
 
     </div>
-
-    <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
-
-    </div>
         
-</div>
-  
+
+
+ 
+    <!-- <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
+        <button (click)="makeGraphApiRequest()" class="convert-button">Convert</button>
+
+        <table>
+          <thead>
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Rate</th>
+                <th>Converted Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of transactionHistory">
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.from }}</td>
+                <td>{{ transaction.to }}</td>
+                <td>{{ transaction.rate }}</td>
+                <td>{{ transaction.convertedAmount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div> -->
 
 <!-- Duplicate code error message
 <div *ngIf="duplicateCurrencyMessage" class="error-message">
