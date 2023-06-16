@@ -4,52 +4,59 @@
       <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
     </div>
   
+    <!-- Amount Input Field -->
     <div *ngIf="activeTab === 'Convert'" id="Convert" class="tabcontent">
-      <div class="input-container">
-        <label for="amount">Amount</label>
-        <br>
-        <!-- <input type="text" id="amount" name="amount" [(ngModel)]="amountValue" required pattern="/^[0-9]*$/"> -->
-        <input type="text" id="amount" name="amount" [(ngModel)]="amountValue" (input)="onAmountInputChange($event)">
+        <div class="input-container">
+            <label for="amount">Amount</label>
+            <br>
+            <input type="text" id="amount" name="amount" [(ngModel)]="amountValue" (input)="onAmountInputChange($event)">
+        </div>
 
-      </div>
-  
-      <!-- <input type="email" [(ngModel)]="enteredEmailAddress" name="email" placeholder="Enter your email address" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"> -->
-      <!-- <div *ngIf="registrationForm.controls['amount'].invalid && (registrationForm.controls['amount'].touched)" class="error-message">
-        Amount value is required
-        <ng-container *ngIf="registrationForm.controls['amount'].errors?.['pattern']">Invalid amount</ng-container>
-      </div> -->
+        <!-- <div id = "swapButton"> -->
+            <!-- From input field -->
+            <div class="input-container">
+                <label for="from">From</label>
+                <br>
+                <input type="text" id="from" name="from" [(ngModel)]="fromCurrency" (input)="onCurrencyInputChange($event, 'from')">
+            </div>
 
-      <div class="input-container">
-        <label for="from">From</label>
-        <br>
-        <span class="flag-icon flag-icon-{{fromCurrency.toLowerCase()}}"></span>
-        <input type="text" id="from" name="from" [(ngModel)]="fromCurrency" (input)="onCurrencyInputChange($event, 'from')">
-      </div>
-      
+            <!-- Swap Button -->
+            <a class="input-container" (click)="swapCurrencies()">
+                <img src="/assets/swap-icon.png" alt="Swap Icon">
+            </a>
+        <!-- </div> -->
 
-      <a class="input-container" (click)="swapCurrencies()">
-        <img src="/assets/swap-icon.png" alt="Swap Icon">
-      </a>
+        <!-- To Input Field -->
+        <div class="input-container">
+            <label for="to">To</label>
+            <br>
+            <span class="flag-icon" [class.flag-icon-{{toCurrency.toLowerCase()}}]="toCurrency"></span>
+            <input type="text" id="to" name="to" [(ngModel)]="toCurrency" (input)="onCurrencyInputChange($event, 'to')">
+        </div>
+        <br><br>
 
-      <div class="input-container">
-        <label for="to">To</label>
-        <br>
-        <span class="flag-icon flag-icon-{{fromCurrency.toLowerCase()}}"></span>
-        <input type="text" id="to" name="to" [(ngModel)]="toCurrency" (input)="onCurrencyInputChange($event, 'to')">
-      </div>
-      <br><br>
-
-      
-      <button (click)="makeApiRequest()" class="convert-button">Convert</button>
-
-      <div>{{ displayAmount }}</div> <!-- Displays the converted amount -->
-      <div>{{ displayRate }}</div> <!-- Displays the conversion rate -->
-
+        <!-- Convert Button -->
+        <button (click)="makeApiRequest()" class="convert-button">Convert</button>
+        
+        <!-- Result after converting -->
+        <div id = "results">
+            <h3>{{ result }}</h3>
+            <br>
+            <h1>{{ displayConvertedAmount }}</h1>
+            <br>
+            <h4>{{ displayRate }}</h4>
+        </div>
 
     </div>
-  
+
     <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
-      <p>Graph</p> 
+
     </div>
-  </div>
+        
+</div>
   
+
+<!-- Duplicate code error message
+<div *ngIf="duplicateCurrencyMessage" class="error-message">
+    {{ duplicateCurrencyMessage }}
+</div> -->

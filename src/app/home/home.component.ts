@@ -11,17 +11,18 @@ export class HomeComponent {
   amountValue: number | undefined;
   fromCurrency: string = '';
   toCurrency: string = '';
-  displayAmount: string = '';
+  displayConvertedAmount: string = '';
   displayRate = '';
-
+  result = '';
+  duplicateCurrencyMessage = '';
 
   onTabClick(tab: string) {
     this.activeTab = tab;
   }
 
   swapCurrencies() {
-    const tempCurrency = this.fromCurrency;
-    this.fromCurrency = this.toCurrency;
+    const tempCurrency = this.fromCurrency.substring(0, 3);
+    this.fromCurrency = this.toCurrency.substring(0, 3);
     this.toCurrency = tempCurrency;
   }
 
@@ -36,38 +37,73 @@ export class HomeComponent {
       const amount = this.amountValue || 0; // User-entered amount to be converted
       const convertedAmount = (amount * exchangeRate).toFixed(2); // Converted amount is displayed to the second decimal place
 
-      this.displayAmount = `Converted Amount: ${convertedAmount}`;
-      this.displayRate = `Exchange Rate: ${exchangeRate}`;
-  }
 
-  onCurrencyInputChange(event: any, field: string) {
+      this.result = `${amount} ${this.fromCurrency} =`
+      this.displayConvertedAmount = `${convertedAmount} ${this.toCurrency}`;
+      this.displayRate = `1 ${this.fromCurrency} = ${exchangeRate} ${this.toCurrency}`;
+
+      // if (this.fromCurrency === this.toCurrency) {
+      //   this.duplicateCurrencyMessage = 'Cannot convert between same currencies';
+      //   return;
+      // }
+
+      
+        // Retrieve existing transaction history from local storage
+        const existingHistoryJSON = localStorage.getItem('transactionHistory');
+        let transactionHistory: any[] = [];
+
+        // Parse the JSON string to a JavaScript array
+        if (existingHistoryJSON) {
+          transactionHistory = JSON.parse(existingHistoryJSON);
+        }
+
+        // Append the new conversion details to the transaction history
+        const newTransaction = {
+          amount: this.amountValue,
+          from: this.fromCurrency,
+          to: this.toCurrency,
+          rate: exchangeRate,
+          convertedAmount: convertedAmount,
+        };
+        transactionHistory.push(newTransaction);
+
+        // Convert the array back to a JSON string
+        const updatedHistoryJSON = JSON.stringify(transactionHistory);
+
+        // Store the updated transaction history in local storage
+        localStorage.setItem('transactionHistory', updatedHistoryJSON);
+      } 
+
+  //For the From and To input fields to not allow any numberic value to be added and to allow only 3 uppercase characters
+  onCurrencyInputChange(event: any, field: string) 
+  {
     const inputValue = event.target.value.toUpperCase();
-    if (inputValue.length <= 3) {
+    const filteredValue = inputValue.replace(/[^A-Z]/g, ''); // For non-alphabetic characters
+
+    if (filteredValue.length <= 3) {
       if (field === 'from') {
-        this.fromCurrency = inputValue;
+        this.fromCurrency = filteredValue;
       } else if (field === 'to') {
-        this.toCurrency = inputValue;
+        this.toCurrency = filteredValue;
       }
+     
+      event.target.value = filteredValue; // Update the input field value
     } else {
-      event.target.value = inputValue.substr(0, 3);
+      event.target.value = filteredValue.substr(0, 3);
     }
   }
 
-
   onAmountInputChange(event: any) {
-  const input = event.target;
-  const inputValue = input.value;
+    const input = event.target;
+    const inputValue = input.value;
 
-  // Remove non-numeric characters
-  const numericValue = inputValue.replace(/\D/g, ''); // /\D/g divides the number into single digits
+    // Remove non-numeric characters
+    const numericValue = inputValue.replace(/\D/g, ''); // /\D/g divides the number into single digits
 
-  // Update the input value with the filtered numeric value
-  input.value = numericValue;
+    // Update the input value with the filtered numeric value
+    input.value = numericValue;
 
-  // Update the amountValue property in your component
-  this.amountValue = numericValue === '' ? undefined : parseInt(numericValue); // Prevents the NaN from being displayed when the user types in a number
-}
-
-
-  
+    // Update the amountValue property in your component
+    this.amountValue = numericValue === '' ? undefined : parseInt(numericValue); // Prevents the NaN from being displayed when the user types in a number
+  }
 }

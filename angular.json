@@ -25,8 +25,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/flag-icon-css/css/flag-icon.min.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
