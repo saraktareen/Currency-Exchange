@@ -9,6 +9,9 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
 
 import { TransactionHistoryService } from './services/transaction-history.service';
 import { AppRoutingModule } from './app-routing.module';
+import { GraphComponent } from './graph/graph.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -16,11 +19,13 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
     HomeComponent,
     TransactionHistoryComponent,
+    GraphComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [TransactionHistoryService],
   bootstrap: [AppComponent]

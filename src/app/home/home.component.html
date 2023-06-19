@@ -1,86 +1,71 @@
 <div class="tab-container">
     <div class="tab-headings">
-      <button (click)="onTabClick('Convert')" [class.active]="activeTab === 'Convert'" class="tablinks">Convert</button>
-      <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
+        <!-- Convert Tab Button -->
+        <button (click)="onTabClick('Convert')" [class.active]="activeTab === 'Convert'" class="tablinks">Convert</button>
+        
+        <!-- Graph Tab Button -->
+        <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
     </div>
   
     <!-- Amount Input Field -->
     <div *ngIf="activeTab === 'Convert'" id="Convert" class="tabcontent">
         <div class="input-container">
+            <!-- Amount Label -->
             <label for="amount">Amount</label>
             <br>
+            <!-- Amount Input -->
             <input type="text" id="amount" name="amount" [(ngModel)]="amountValue" (input)="onAmountInputChange($event)">
         </div>
 
-        <!-- <div id = "swapButton"> -->
-            <!-- From input field -->
+        <div class="abc">
+            <!-- From Input Field -->
             <div class="input-container">
+                <!-- From Label -->
                 <label for="from">From</label>
                 <br>
+                <!-- From Input -->
                 <input type="text" id="from" name="from" [(ngModel)]="fromCurrency" (input)="onCurrencyInputChange($event, 'from')">
             </div>
 
             <!-- Swap Button -->
             <a class="input-container" (click)="swapCurrencies()">
+                <!-- Swap Icon -->
                 <img src="/assets/swap-icon.png" alt="Swap Icon">
             </a>
-        <!-- </div> -->
+        </div>
 
         <!-- To Input Field -->
         <div class="input-container">
+            <!-- To Label -->
             <label for="to">To</label>
             <br>
-            <span class="flag-icon" [class.flag-icon-{{toCurrency.toLowerCase()}}]="toCurrency"></span>
+            <!-- To Input -->
             <input type="text" id="to" name="to" [(ngModel)]="toCurrency" (input)="onCurrencyInputChange($event, 'to')">
         </div>
         <br><br>
 
         <!-- Convert Button -->
         <button (click)="makeApiRequest()" class="convert-button">Convert</button>
-        
-        <!-- Result after converting -->
-        <div id = "results">
-            <h3>{{ result }}</h3>
-            <br>
-            <h1>{{ displayConvertedAmount }}</h1>
-            <br>
-            <h4>{{ displayRate }}</h4>
-        </div>
-
     </div>
-        
+
+    <!-- Result after converting -->
+    <div id="results">
+        <!-- Result Label -->
+        <h3>{{ result }}</h3>
+        <br>
+        <!-- Converted Amount -->
+        <h1>{{ displayConvertedAmount }}</h1>
+        <br>
+        <!-- Conversion Rate -->
+        <h4>{{ displayRate }}</h4>
+    </div>
+
+    <!-- Graph Tab Content -->
+    <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
+        <canvas id="lineChart" #lineChart></canvas>
+        console.log(hihihihih)
+    </div>
+</div>
 
 
- 
-    <!-- <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
-        <button (click)="makeGraphApiRequest()" class="convert-button">Convert</button>
 
-        <table>
-          <thead>
-            <tr>
-                <th>Id</th>
-                <th>Amount</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Rate</th>
-                <th>Converted Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let transaction of transactionHistory">
-                <td>{{ transaction.id }}</td>
-                <td>{{ transaction.amount }}</td>
-                <td>{{ transaction.from }}</td>
-                <td>{{ transaction.to }}</td>
-                <td>{{ transaction.rate }}</td>
-                <td>{{ transaction.convertedAmount }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-</div> -->
-
-<!-- Duplicate code error message
-<div *ngIf="duplicateCurrencyMessage" class="error-message">
-    {{ duplicateCurrencyMessage }}
-</div> -->

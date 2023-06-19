@@ -44,13 +44,19 @@
   
   .tabcontent {
     padding: 5px 5px;
+    display: flex;
+    flex-direction: row;
   }
 
   .input-container {
     display: inline-block;
     margin-right: 10px;
     padding: 43px 20px;
+  }
 
+  .abc{
+    display: flex;
+    flex-direction: row;
   }
 
   .input-container label{
@@ -90,21 +96,20 @@
     box-shadow: #ccc;
     float: right;
     margin-right: 5%;
-    margin-top: 0px;
+    margin-top: 165px;
   }
 
   .convert-button:hover{
     background-color: rgb(40, 40, 201);
     transition: 0.3s;
   }
-
   
-  /* #results {
-    margin-top: 16px;
-    background-color: #f1f1f1;
+  #results {
+    /* margin-top: 16px; */
     padding: 10px;
     border-radius: 5px;
-  } */
+  }
+  
   
 @media (max-width: 414px) {
   .tab-container{
@@ -114,7 +119,10 @@
 
   .tabcontent{
     text-align: center;
+    display:flex;
+    flex-direction: column;
   }
+
 
   .tab-headings button {
     padding: 14px 60px;
@@ -126,7 +134,10 @@
   }
 
   .convert-button{
-    width: 200px;
+    margin-right: 74px;
+    margin-top: 5px;
+    margin-left: 67px;
+    width: 201px;
   }
 
   .abc{
@@ -135,7 +146,7 @@
   }
 
   #results{
-    margin-top: 68px;
+    margin-top: 32px;
   }
 }
 

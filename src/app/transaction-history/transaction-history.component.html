@@ -7,6 +7,7 @@
           <th>To</th>
           <th>Rate</th>
           <th>Converted Amount</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
           <td>{{ transaction.to }}</td>
           <td>{{ transaction.rate }}</td>
           <td>{{ transaction.convertedAmount }}</td>
+          <td>{{ transaction.currentDate | date:'yyyy-MM-dd' }}</td>
         </tr>
       </tbody>
     </table>

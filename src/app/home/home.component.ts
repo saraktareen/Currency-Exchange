@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { TransactionHistoryService } from '../services/transaction-history.service';
+// import { Component} from '@angular/core';
+// import { AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Chart } from 'chart.js';
+// import { registerables } from 'chart.js';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +11,42 @@ import { TransactionHistoryService } from '../services/transaction-history.servi
 })
 
 export class HomeComponent {
+//   // ...
 
-  constructor(private transactionHistoryService: TransactionHistoryService) {}
+//   @ViewChild('lineChart') lineChart!: ElementRef<HTMLCanvasElement>;
 
+//   ngAfterViewInit() {
+//     Chart.register(...registerables); // Register necessary chart types, options, and plugins
+  
+//     const ctx = this.lineChart?.nativeElement.getContext('2d');
+//     if (ctx) {
+//       new Chart(ctx, {
+//         type: 'line',
+//         data: {
+//           labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+//           datasets: [{
+//             label: 'My Dataset',
+//             data: [65, 59, 80, 81, 56, 55],
+//             fill: false,
+//             borderColor: 'rgb(75, 192, 192)',
+//             tension: 0.1
+//           }]
+//         },
+//       options: {
+//         // Add any additional options for customization
+//       }
+//     });
+//     }
+//   }
+
+  // constructor(private transactionHistoryService: TransactionHistoryService) {}
   transactionHistory: any[] = [];
 
+  currentDate: Date;
+
+  constructor() {
+    this.currentDate = new Date();
+  }
 
   activeTab: string = 'Convert';
   amountValue: number | undefined;
@@ -22,12 +56,6 @@ export class HomeComponent {
   displayRate = '';
   result = '';
   id: number = 0;
-  // duplicateCurrencyMessage = '';
-
-  startDate: string = '';
-  endDate: string = '';
-
-
 
   onTabClick(tab: string) {
     this.activeTab = tab;
@@ -44,6 +72,7 @@ export class HomeComponent {
   async makeApiRequest() {
     const requestURL = `https://api.exchangerate.host/convert?from=${this.fromCurrency}&to=${this.toCurrency}`;
 
+    try{
       const response = await fetch(requestURL);
       const data = await response.json();
 
@@ -55,12 +84,6 @@ export class HomeComponent {
       this.result = `${amount} ${this.fromCurrency} =`
       this.displayConvertedAmount = `${convertedAmount} ${this.toCurrency}`;
       this.displayRate = `1 ${this.fromCurrency} = ${exchangeRate} ${this.toCurrency}`;
-
-      // if (this.fromCurrency === this.toCurrency) {
-      //   this.duplicateCurrencyMessage = 'Cannot convert between same currencies';
-      //   return;
-      // }
-
       
         // Retrieve existing transaction history from local storage if not a new array called transactionHistory is created
         const existingHistoryJSON = localStorage.getItem('transactionHistory');
@@ -79,15 +102,20 @@ export class HomeComponent {
           to: this.toCurrency,
           rate: exchangeRate,
           convertedAmount: convertedAmount,
+          currentDate: this.currentDate
         };
         transactionHistory.push(newTransaction); 
-        this.id++;
         // Convert the array back to a JSON string
         const updatedHistoryJSON = JSON.stringify(transactionHistory);
 
         // Store the updated transaction history in local storage
         localStorage.setItem('transactionHistory', updatedHistoryJSON);
-      } 
+      }catch (error) {
+      this.result = 'Error: Conversion request failed';
+      this.displayConvertedAmount = '';
+      this.displayRate = '';
+    } 
+  }
 
   //For the From and To input fields to not allow any numberic value to be added and to allow only 3 uppercase characters
   onCurrencyInputChange(event: any, field: string) 
@@ -121,9 +149,10 @@ export class HomeComponent {
     // Update the amountValue property in your component
     this.amountValue = numericValue === '' ? undefined : parseInt(numericValue); // Prevents the NaN from being displayed when the user types in a number
   }
+  
+  // makeGraphApiRequest() {
+  //   const requestURL = `https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2020-01-04`;
+  // }
 
-  makeGraphApiRequest() {
-    const existingHistoryJSON = localStorage.getItem('transactionHistory');
-    this.transactionHistory = existingHistoryJSON ? JSON.parse(existingHistoryJSON) : [];
-  }
+  
 }
