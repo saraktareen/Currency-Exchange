@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 
-import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import axios from 'axios'; //tool for making HTTP requests in JavaScript or TypeScript.
 import { BASE_URL } from 'src/app/constants';
@@ -12,6 +12,8 @@ import { BASE_URL } from 'src/app/constants';
 })
 
 export class HomeComponent implements OnInit {
+  @Input() imageUrl: string | undefined;
+
   @ViewChild('lineChart') lineChart!: ElementRef<HTMLCanvasElement>; // ViewChild decorator allows accessing a reference to an HTML canvas element
   private chartInstance: Chart | null = null;
 

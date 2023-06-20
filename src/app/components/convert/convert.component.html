@@ -20,7 +20,7 @@
             </div>
 
             <!-- Swap Button -->
-            <a class="input-container" (click)="swapCurrencies()">
+            <a class="input-container" id="swap"(click)="swapCurrencies()">
                 <!-- Swap Icon -->
                 <img src="/assets/swap-icon.png" alt="Swap Icon">
             </a>
@@ -43,13 +43,10 @@
     <!-- Result after converting -->
     <div id="results">
         <!-- Result Label -->
-        <h3>{{ result }}</h3>
-        <br>
-        <!-- Converted Amount -->
-        <h1>{{ displayConvertedAmount }}</h1>
+        <h1>{{ result }}</h1>
         <br>
         <!-- Conversion Rate -->
-        <h4>{{ displayRate }}</h4>
+        <h5 id = "displayRate">{{ displayRate }}</h5>
     </div>
 
 

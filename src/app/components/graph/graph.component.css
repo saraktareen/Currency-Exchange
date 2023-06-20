@@ -12,12 +12,27 @@
     z-index: 1;
     background-color: #fff;
     border-radius: 10px;
+    margin-top: 13px;
+
+}
+
+.radioButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buttonAndText{
+    margin-left: 5px;
 }
 
 
 @media (max-width: 414px) {
     .chart-container {
-        top: 20%;
-        margin-right: 15px;
+        top: 25%;
+        margin: 8px;
+        margin-left: 2px;
+        margin-right: 2px;
+        width: 346px;
     }
 }

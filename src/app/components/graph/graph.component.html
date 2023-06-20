@@ -1,14 +1,20 @@
 <div class="chart-container">
 
   <div class="radioButtons">
+    <div class = "buttonAndText">
       <input type="radio" name="dateRange" value="7" checked (change)="onRadioChange($event)">
       <label for="7">7 days</label>
+    </div>
 
+    <div class = "buttonAndText">
       <input type="radio" name="dateRange" value="14" (change)="onRadioChange($event)">
       <label for="14">14 days</label>
+    </div>
 
+    <div class = "buttonAndText">
       <input type="radio" name="dateRange" value="30" (change)="onRadioChange($event)">
       <label for="30">30 days</label>
+    </div>
   </div>
 
 <canvas #lineChart></canvas>

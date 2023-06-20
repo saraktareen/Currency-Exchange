@@ -54,6 +54,10 @@
       margin-right: 10px;
       padding: 43px 20px;
     }
+
+    #swap{
+        padding-top: 79px;
+    }
   
     .fromAndSwap{
       display: flex;
@@ -87,17 +91,17 @@
     }
   
     .convert-button {
-      background-color: rgb(27, 27, 155);
-      color: white;
-      font-size: 15px;
-      width: 150px;
-      height: 40px;
-      border: 1px solid rgb(215, 209, 209);
-      border-radius: 5px;
-      box-shadow: #ccc;
-      float: right;
-      margin-right: 5%;
-      margin-top: 165px;
+        background-color: rgb(27, 27, 155);
+        color: white;
+        font-size: 15px;
+        width: 159px;
+        height: 40px;
+        border: 1px solid rgb(215, 209, 209);
+        border-radius: 5px;
+        box-shadow: #ccc;
+        float: right;
+        margin-right: 5%;
+        margin-top: 72px;
     }
   
     .convert-button:hover{
@@ -109,6 +113,7 @@
       /* margin-top: 16px; */
       padding: 10px;
       border-radius: 5px;
+      text-align: center;
     }
   
   .chart-container {
@@ -122,6 +127,14 @@
       background-color: #fff;
       border-radius: 10px;
       /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+  }
+
+  input{
+    padding-left: 9px;
+  }
+
+  #displayRate{
+    color:gray;
   }
   
   
@@ -138,6 +151,7 @@
       text-align: center;
       display:flex;
       flex-direction: column;
+      margin-top: 10px;
     }
   
   
@@ -148,6 +162,7 @@
     .input-container {
       text-align: center;
       padding: 20px;
+      padding-top: 7px;
     }
   
     .convert-button{
@@ -162,6 +177,10 @@
       flex-direction: column;
     }
   
+    #swap{
+      padding-top: 5px;
+    }
+
     #results{
       margin-top: 32px;
     }

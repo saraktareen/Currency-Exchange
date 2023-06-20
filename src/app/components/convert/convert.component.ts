@@ -52,10 +52,9 @@ export class ConvertComponent {
       const amount = this.amountValue || 0; // User-entered amount to be converted
       const convertedAmount = (amount * exchangeRate).toFixed(2); // Converted amount is displayed to the second decimal place
 
-
-      this.result = `${amount} ${this.fromCurrency} =`
-      this.displayConvertedAmount = `${convertedAmount} ${this.toCurrency}`;
-      this.displayRate = `1 ${this.fromCurrency} = ${exchangeRate} ${this.toCurrency}`;
+      // this.displayConvertedAmount = `${convertedAmount} ${this.toCurrency}`;
+      this.result = `${amount} ${this.fromCurrency} = ${convertedAmount} ${this.toCurrency}`
+      this.displayRate = `Rate: 1 ${this.fromCurrency} = ${exchangeRate} ${this.toCurrency}`;
 
         // Retrieve existing transaction history from local storage if not a new array called transactionHistory is created
         const existingHistoryJSON = localStorage.getItem('transactionHistory');
