@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TransactionHistoryService } from '../services/transaction-history.service';
+import { TransactionHistoryService } from '../../services/transaction-history.service';
 
 @Component({
   selector: 'app-transaction-history',

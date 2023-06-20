@@ -1,12 +1,4 @@
-<div class="tab-container">
-    <div class="tab-headings">
-        <!-- Convert Tab Button -->
-        <button (click)="onTabClick('Convert')" [class.active]="activeTab === 'Convert'" class="tablinks">Convert</button>
-        
-        <!-- Graph Tab Button -->
-        <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
-    </div>
-  
+ 
     <!-- Amount Input Field -->
     <div *ngIf="activeTab === 'Convert'" id="Convert" class="tabcontent">
         <div class="input-container">
@@ -17,7 +9,7 @@
             <input type="text" id="amount" name="amount" [(ngModel)]="amountValue" (input)="onAmountInputChange($event)">
         </div>
 
-        <div class="abc">
+        <div class="fromAndSwap">
             <!-- From Input Field -->
             <div class="input-container">
                 <!-- From Label -->
@@ -59,13 +51,6 @@
         <!-- Conversion Rate -->
         <h4>{{ displayRate }}</h4>
     </div>
-
-    <!-- Graph Tab Content -->
-    <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
-        <canvas id="lineChart" #lineChart></canvas>
-        console.log(hihihihih)
-    </div>
-</div>
 
 
 

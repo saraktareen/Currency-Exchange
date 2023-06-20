@@ -3,14 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { TransactionHistoryComponent } from './components/transaction-history/transaction-history.component';
 
 import { TransactionHistoryService } from './services/transaction-history.service';
 import { AppRoutingModule } from './app-routing.module';
-import { GraphComponent } from './graph/graph.component';
+import { GraphComponent } from './components/graph/graph.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ConvertComponent } from './components/convert/convert.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     TransactionHistoryComponent,
     GraphComponent,
+    ConvertComponent,
   ],
   imports: [
     BrowserModule,

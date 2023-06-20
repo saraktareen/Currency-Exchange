@@ -1,0 +1,24 @@
+<div class="tab-container">
+
+    <div class="tab-headings">
+        <!-- Convert Tab Button -->
+        <button (click)="onTabClick('Convert')" [class.active]="activeTab === 'Convert'" class="tablinks">Convert</button>
+        
+        <!-- Graph Tab Button -->
+        <button (click)="onTabClick('Graph')" [class.active]="activeTab === 'Graph'" class="tablinks">Graph</button>
+    </div>
+  
+    <!-- Amount Input Field -->
+    <div *ngIf="activeTab === 'Convert'" id="Convert" class="tabcontent">
+        <app-convert/>
+    </div>
+
+
+    <!-- Graph Tab Content -->
+    <div *ngIf="activeTab === 'Graph'" id="Graph" class="tabcontent">
+        <app-graph/>
+    </div>
+</div>
+
+
+
