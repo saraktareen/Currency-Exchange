@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { GraphComponent } from './components/graph/graph.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConvertComponent } from './components/convert/convert.component';
-import { MainImageComponent } from './components/main-image/main-image.component';
 
 
 @NgModule({
@@ -23,7 +22,6 @@ import { MainImageComponent } from './components/main-image/main-image.component
     TransactionHistoryComponent,
     GraphComponent,
     ConvertComponent,
-    MainImageComponent,
   ],
   imports: [
     BrowserModule,

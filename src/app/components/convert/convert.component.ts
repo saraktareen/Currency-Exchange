@@ -52,7 +52,6 @@ export class ConvertComponent {
       const amount = this.amountValue || 0; // User-entered amount to be converted
       const convertedAmount = (amount * exchangeRate).toFixed(2); // Converted amount is displayed to the second decimal place
 
-      // this.displayConvertedAmount = `${convertedAmount} ${this.toCurrency}`;
       this.result = `${amount} ${this.fromCurrency} = ${convertedAmount} ${this.toCurrency}`
       this.displayRate = `Rate: 1 ${this.fromCurrency} = ${exchangeRate} ${this.toCurrency}`;
 

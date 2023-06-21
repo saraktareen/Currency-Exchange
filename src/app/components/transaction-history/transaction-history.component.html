@@ -1,3 +1,8 @@
+<div class="image">
+  <!-- <img src="./assets/background.jpg"> -->
+</div>
+<h1>Transaction History</h1>
+<div class = "abc">
 <div class="table-container">
     <table>
       <thead>
@@ -16,10 +21,11 @@
           <td>{{ transaction.from }}</td>
           <td>{{ transaction.to }}</td>
           <td>{{ transaction.rate }}</td>
-          <td>{{ transaction.convertedAmount }}</td>
+          <td id = "convertedAmount">{{ transaction.convertedAmount }}</td>
           <td>{{ transaction.currentDate | date:'yyyy-MM-dd' }}</td>
         </tr>
       </tbody>
+      <br><br>
     </table>
 </div>
-  
+</div>  

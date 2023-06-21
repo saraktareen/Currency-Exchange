@@ -1,11 +1,22 @@
+.image{
+  width: 100%; /* 1280 x 372  */
+    height: 70px;
+    background-color: #0f3773;
+}
+
+h1{
+  color: rgb(7, 7, 71);
+  text-align: center;
+  margin: 10px;
+  padding: 20px;
+}
+
 .tab-container{
   position: absolute;
-  top: 65%;
-  left: 50%;
-  width:85%;
+  top: 25%;
+  left: 8%;
+  width: 85%;
   height: 400px;
-  transform: translate(-50%, -50%);
-  z-index: 1;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -130,10 +141,13 @@
   
 @media (max-width: 414px) {
   .tab-container{
-    top: 55%; 
+    top: 17%;
     height: 80%;
   } 
 
+  h1{
+    font-size: 25px;
+  }
   .tabcontent{
     text-align: center;
     display:flex;
