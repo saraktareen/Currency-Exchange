@@ -53,10 +53,10 @@ export class HomeComponent implements OnInit {
       const endDateString = today.toISOString().split('T')[0];
 
       
+      
 
       //API for the graph
       const graphRequestURL = `${BASE_URL}timeseries?start_date=${startDateString}&end_date=${endDateString}&symbols=${this.baseCurrency},${this.targetCurrency}`;
-      // https://api.exchangerate.host/timeseries?start_date=2023-06-01&end_date=2023-06-07&base=USD&symbols=PKR
       try {
         const response = await axios.get(graphRequestURL);
         const rates = response.data.rates;
@@ -139,7 +139,6 @@ export class HomeComponent implements OnInit {
     this.toCurrency = tempCurrency;
   }
 
-  ///
   // function is made asynchronous
   // Converts the currency
   async makeApiRequest() {

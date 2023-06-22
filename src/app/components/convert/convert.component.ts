@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BASE_URL } from 'src/app/constants';
 
-
 @Component({
   selector: 'app-convert',
   templateUrl: './convert.component.html',
@@ -26,7 +25,6 @@ export class ConvertComponent {
   result = '';
   id: number = 0;
   
-  
 
   onTabClick(tab: string) {
     this.activeTab = tab;
@@ -39,9 +37,22 @@ export class ConvertComponent {
   }
 
   ///
-  // function is made asynchronous
+  // Function is made asynchronous
   // Converts the currency
   async makeApiRequest() {
+    if (!this.fromCurrency) {
+      this.result = 'Error: Please enter a valid currency';
+      this.displayConvertedAmount = '';
+      this.displayRate = '';
+      return;
+    }
+
+    if (this.fromCurrency === this.toCurrency) {
+      this.result = 'Error: Same currencies';
+      this.displayConvertedAmount = '';
+      this.displayRate = '';
+      return;
+    }
     const requestURL = `${BASE_URL}convert?from=${this.fromCurrency}&to=${this.toCurrency}`;
 
     try{

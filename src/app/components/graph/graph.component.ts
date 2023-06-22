@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import axios from 'axios'; //tool for making HTTP requests in JavaScript or TypeScript.
 import { BASE_URL } from 'src/app/constants';
+
 
 @Component({
   selector: 'app-graph',
@@ -25,9 +26,6 @@ export class GraphComponent implements OnInit {
           this.targetCurrency = latestTransaction.to;
         }
       }
-  
-  
-  
   
     ngAfterViewInit() {
       Chart.register(...registerables); //registers the provided Chart.js plugins or components for use
@@ -87,6 +85,7 @@ export class GraphComponent implements OnInit {
               ]
             }
           });
+
         } catch (error) {
           console.error('Error retrieving conversion rates:', error);
         }

@@ -11,7 +11,8 @@ const appRoutes: Routes = [
     { path: '', redirectTo: 'Home', pathMatch: 'full' }, // Default route redirects to 'Home'
     { path: 'Home', component: HomeComponent },
     { path: 'TransactionHistory', component: TransactionHistoryComponent},
-    { path: 'Graph', component: GraphComponent}
+    { path: 'Graph', component: GraphComponent},
+
   ];
 
 @NgModule({
