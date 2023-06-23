@@ -40,7 +40,7 @@ export class ConvertComponent {
   // Function is made asynchronous
   // Converts the currency
   async makeApiRequest() {
-    if (!this.fromCurrency) {
+    if (!this.fromCurrency || !this.toCurrency) {
       this.result = 'Error: Please enter a valid currency';
       this.displayConvertedAmount = '';
       this.displayRate = '';
